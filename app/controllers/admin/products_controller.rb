@@ -2,6 +2,9 @@ class Admin::ProductsController < ApplicationController
   require 'dotenv/load'
   http_basic_authenticate_with name: ENV['ADMIN_USER'], password: ENV['ADMIN_PASSWORD']
 
+  # Use this line in any controllers that a user must be logged in to see
+  # before_filter :authorize
+
   def index
     @products = Product.order(id: :desc).all
   end
